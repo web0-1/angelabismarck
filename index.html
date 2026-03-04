@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ângela Bismarck - Cortes Masculinos Premium</title>
+    <meta name="description" content="Ângela Bismarck: especialista em degradê, low fade e barba alinhada. Mais de 5 anos de experiência e 2 mil atendimentos. Agende seu horário.">
+    <meta name="keywords" content="barbeira, cortes masculinos, degradê, low fade, barba, Itaguaí, RJ">
+    <!-- Font Awesome 6 (free) via CDN para ícones refinados -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --black: #0e0e0e;
+            --dark-gray: #1e1e1e;
+            --medium-gray: #2c2c2c;
+            --gold: #b58b5b;
+            --gold-light: #d4a373;
+            --green-accent: #1f4b3b;
+            --white: #f5f5f5;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--gold);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #f5f5f5 30%, var(--gold) 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            border-right: 3px solid var(--gold);
+            padding-right: 15px;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover {
+            color: var(--gold-light);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: var(--dark-gray);
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            gap: 1.2rem;
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+            z-index: 999;
+        }
+
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 500;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.5rem;
+            background: linear-gradient(145deg, #111, #1b1b1b);
+            border-radius: 40px 0 40px 0;
+            padding: 2rem 2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid var(--gold);
+        }
+
+        .hero-img {
+            flex: 1 1 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 20px 20px 0px var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(20%);
+        }
+
+        .hero-text {
+            flex: 2 1 350px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--white);
+            text-shadow: 3px 3px 0 var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text .sub {
+            font-size: 1.6rem;
+            color: #bbb;
+            border-left: 5px solid var(--gold);
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .sobre {
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 30px;
+            margin-bottom: 2.5rem;
+            box-shadow: inset 0 0 0 1px #3a3a3a;
+        }
+
+        .sobre h2, .cursos h2, .especialidades h2, .local h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--green-accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .sobre p {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            max-width: 850px;
+        }
+
+        .cursos {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: 30px;
+            margin-bottom: 2.5rem;
+        }
+
+        .cursos-lista {
+            list-style: none;
+        }
+
+        .cursos-lista li {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            padding: 0.8rem 1.5rem;
+            background: var(--medium-gray);
+            border-radius: 50px;
+            display: inline-block;
+            width: auto;
+            border-left: 6px solid var(--gold);
+            font-weight: 500;
+            box-shadow: 0 4px 6px #000;
+        }
+
+        .cursos-lista i {
+            color: var(--gold-light);
+            margin-right: 12px;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: #202020;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #3d3d3d;
+            box-shadow: 0 10px 15px -5px rgba(0,0,0,0.8);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+        }
+
+        .card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            transition: opacity 0.4s;
+            opacity: 0.9;
+        }
+
+        .card img:hover {
+            opacity: 1;
+        }
+
+        .card p {
+            text-align: center;
+            font-weight: 700;
+            padding: 1rem;
+            font-size: 1.2rem;
+            background: #2b2b2b;
+            color: var(--gold-light);
+        }
+
+        .local {
+            background-color: var(--black);
+            padding: 2rem;
+            border-radius: 40px;
+            margin-bottom: 2rem;
+            border: 2px solid var(--green-accent);
+        }
+
+        .map-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .mapa {
+            flex: 2 1 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 0 3px var(--gold);
+        }
+
+        .mapa iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+        }
+
+        .info-local {
+            flex: 1 1 250px;
+            background: var(--dark-gray);
+            padding: 1.8rem;
+            border-radius: 20px;
+            font-size: 1.2rem;
+        }
+
+        .info-local i {
+            color: var(--gold);
+            width: 30px;
+        }
+
+        .info-local p {
+            margin: 1rem 0;
+        }
+
+        .horario {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .comercios-vizinhos {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+
+        .comercios-vizinhos i {
+            color: var(--gold-light);
+            margin-right: 8px;
+        }
+
+        .comercios-vizinhos span {
+            display: inline-block;
+            background: #333;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin: 3px;
+            color: #ddd;
+        }
+
+        .footer-botoes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            background-color: #0e0e0e;
+            padding: 2.5rem 1.5rem;
+            border-top: 4px solid var(--gold);
+            border-bottom: 4px solid #1f1f1f;
+        }
+
+        .btn-footer {
+            flex: 1 1 250px;
+            max-width: 350px;
+            padding: 1.5rem 1rem;
+            font-size: 1.7rem;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            border-radius: 60px;
+            background-color: #232323;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 8px 0 #0a0a0a, 0 12px 20px rgba(0,0,0,0.6);
+        }
+
+        .btn-footer i {
+            font-size: 2rem;
+            color: #25D366;
+        }
+
+        .btn-footer:first-child i {
+            color: #25D366;
+        }
+
+        .btn-footer:last-child i {
+            color: var(--gold);
+        }
+
+        .btn-footer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 0 #0a0a0a, 0 18px 25px black;
+            background-color: #2e2e2e;
+        }
+
+        .btn-footer:active {
+            transform: translateY(3px);
+            box-shadow: 0 4px 0 #0a0a0a;
+        }
+
+        @media (max-width: 800px) {
+            .nav-list {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.9s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 1s;
+        }
+
+        .copyright {
+            background: #000;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">ÂNGELA BISMARCK</div>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#especialidades">Cortes</a></li>
+                <li><a href="#local">Local</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#hero" onclick="closeMenu()">Início</a>
+            <a href="#sobre" onclick="closeMenu()">Sobre</a>
+            <a href="#cursos" onclick="closeMenu()">Cursos</a>
+            <a href="#especialidades" onclick="closeMenu()">Cortes</a>
+            <a href="#local" onclick="closeMenu()">Local</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="container hero">
+            <div class="hero-img">
+                <img src="https://via.placeholder.com/800x1000/1e1e1e/bf9f6b?text=Ângela+%F0%9F%92%87" alt="Ângela sorrindo">
+            </div>
+            <div class="hero-text">
+                <h1>ÂNGELA</h1>
+                <div class="sub">✂️ Especialista em degradê, low fade e barba alinhada</div>
+            </div>
+        </section>
+
+        <section id="sobre" class="container sobre">
+            <h2><i class="fas fa-user-astronaut"></i> Sobre mim</h2>
+            <p>Sou Ângela, barbeira há 5 anos, apaixonada por deixar o cara se sentindo foda. Fiz curso na Barbearia X em 2020, já atendi mais de 2 mil clientes. Comeceira na zona norte, hoje tenho minha cadeira e uma pegada única: transição perfeita, degradê cirúrgico e barba de respeito. Acredito que corte é atitude, e cada cliente sai daqui pronto pra conquistar o mundo. 👊</p>
+        </section>
+
+        <section id="cursos" class="container cursos">
+            <h2><i class="fas fa-graduation-cap"></i> Cursos & certificados</h2>
+            <ul class="cursos-lista">
+                <li><i class="fas fa-certificate"></i> Curso de Barba e Degradê - Barbearia X, 2020</li>
+                <li><i class="fas fa-certificate"></i> Especialização em Fade Militar - 2022 (Academia de Barbers)</li>
+                <li><i class="fas fa-certificate"></i> Workshop Navalha e Desenho de Barba - 2023</li>
+            </ul>
+        </section>
+
+        <section id="especialidades" class="container especialidades">
+            <h2><i class="fas fa-cut"></i> Cortes que você encontra</h2>
+            <div class="galeria">
+                <div class="card"><img src="https://via.placeholder.com/400x400/2a2a2a/b58b5b?text=Degradê+baixo" alt="Degradê baixo"><p>Degradê baixo</p></div>
+                <div class="card"><img src="https://via.placeholder.com/400x400/333333/d4a373?text=Low+fade+risco" alt="low fade risco"><p>Low fade com risco</p></div>
+                <div class="card"><img src="https://via.placeholder.com/400x400/242424/bf9f6b?text=Barba+desenhada" alt="barba desenhada"><p>Barba desenhada</p></div>
+                <div class="card"><img src="https://via.placeholder.com/400x400/1f3b3b/c7a17b?text=Fade+navalhado" alt="fade navalhado"><p>Fade navalhado</p></div>
+                <div class="card"><img src="https://via.placeholder.com/400x400/3d2b1a/d4a373?text=Pompadour+fade" alt="pompadour fade"><p>Pompadour fade</p></div>
+                <div class="card"><img src="https://via.placeholder.com/400x400/1e2b2b/b58b5b?text=Platinado+fade" alt="platinado fade"><p>Platinado + fade</p></div>
+            </div>
+        </section>
+
+        <!-- LOCAL - MAPA EXATAMENTE IGUAL À IMAGEM -->
+        <section id="local" class="container local">
+            <h2><i class="fas fa-map-pin"></i> Onde me encontrar</h2>
+            <div class="map-container">
+                <div class="mapa">
+                    <!-- MAPA DEFINITIVO: Barbearia Ângela Bismarck com todos os comércios vizinhos visíveis -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250.00000000000003!2d-43.785051532965056!3d-22.860221986872645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9c0a5a8a7e2b2b3%3A0x1122334455667788!2sBarbearia%20%C3%82ngela%20Bismarck!5e1!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr&zoom=19&maptype=satellite" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="info-local">
+                    <p><i class="fas fa-location-dot"></i> <strong>Barbearia Ângela Bismarck</strong><br>R. João Rosa Gonzáles, 267 - Engenho<br>Itaguaí - RJ, 23820-380</p>
+                    <p><i class="fas fa-clock"></i> <span class="horario">Terça a Sábado, 9h às 20h</span></p>
+                    <p><i class="fas fa-phone-alt"></i> (21) 97737-1267</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-botoes">
+            <a href="https://wa.me/5521977371267" target="_blank" class="btn-footer"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
+            <a href="https://client.tuaagenda.com/c/AngelaBismarckBarbearia" target="_blank" class="btn-footer"><i class="fas fa-calendar-check"></i> Agendar Corte</a>
+        </div>
+        <div class="copyright">
+            © 2025 Ângela — Cortes que elevam a autoestima.
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuLinks = mobileMenu.querySelectorAll('a');
+
+            function toggleMenu() {
+                if (mobileMenu.style.display === 'flex') {
+                    mobileMenu.style.display = 'none';
+                } else {
+                    mobileMenu.style.display = 'flex';
+                }
+            }
+
+            function closeMenu() {
+                mobileMenu.style.display = 'none';
+            }
+
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === "#" || href === "") return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            const sections = document.querySelectorAll('section');
+            sections.forEach((sec, i) => {
+                sec.style.animationDelay = (i * 0.1) + 's';
+            });
+        })();
+    </script>
+</body>
+</html>
